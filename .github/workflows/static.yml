@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checklist SiteDev - Full (1-79)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 18px; background:#f5f7fa; color:#222; }
+    h1 { text-align:center; margin-bottom: 6px; }
+    .meta { margin-bottom:12px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .meta label { font-size:14px; }
+    input[type="text"], input[type="date"], select, textarea { padding:6px; font-size:14px; }
+    table { width:100%; border-collapse:collapse; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+    th, td { border:1px solid #ddd; padding:8px; vertical-align:top; font-size:13px; }
+    th { background:#2f855a; color:#fff; position:sticky; top:0; z-index:2; }
+    td input[type="text"], td select, td textarea { width:100%; box-sizing:border-box; }
+    textarea { min-height:40px; resize:vertical; }
+    .controls { margin:12px 0; display:flex; gap:8px; flex-wrap:wrap; }
+    .btn { padding:10px 14px; background:#2f855a; color:#fff; border:none; border-radius:6px; cursor:pointer; }
+    .btn.secondary { background:#4a5568; }
+    .table-wrap { max-height:66vh; overflow:auto; border-radius:6px; }
+    .small { font-size:12px; color:#555; }
+    .note { margin-top:8px; font-size:13px; color:#333; }
+  </style>
+
+  <!-- jsPDF and autoTable CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <h1>FORM CHECKLIST PEKERJAAN SITEDEV (FULL)</h1>
+
+  <div class="meta">
+    <label>Nama Proyek: <input type="text" id="project"></label>
+    <label>Lokasi: <input type="text" id="location"></label>
+    <label>Tanggal: <input type="date" id="date"></label>
+    <label>Nama AM: <input type="text" id="am"></label>
+  </div>
+
+  <div class="controls">
+    <button class="btn" onclick="processPDF()">Proses & Simpan PDF</button>
+    <button class="btn" onclick="exportChecklist()">Export ke CSV</button>
+    <button class="btn secondary" onclick="clearInputs()">Reset Hasil</button>
+    <div class="small">Gunakan dropdown pada kolom Hasil untuk memilih Pass / Fail. Isi Keterangan, PIC, Action Plan sesuai kebutuhan.</div>
+  </div>
+
+  <div class="table-wrap">
+  <table id="checklistTable">
+    <thead>
+      <tr>
+        <th style="min-width:36px">No</th>
+        <th style="min-width:120px">Area</th>
+        <th style="min-width:220px">Pekerjaan / Item Pengecekan</th>
+        <th style="min-width:220px">Standart penilaian</th>
+        <th style="min-width:200px">Pass Criteria</th>
+        <th style="min-width:200px">Fail Criteria</th>
+        <th style="min-width:120px">Hasil (Pass/Fail)</th>
+        <th style="min-width:200px">Keterangan</th>
+        <th style="min-width:140px">PIC</th>
+        <th style="min-width:200px">Action Plan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows 1 - 79 copied from the provided PDF content -->
+      <tr>
+        <td>1</td>
+        <td>SHOPFRONT</td>
+        <td>Billboard & Singlepole - Timer
+        <br>- Cek timer mode auto
+        <br>- Observasi ON jam 17.00–18.00
+        <br>- Observasi OFF jam 22.00</td>
+        <td>ON/OFF sesuai jadwal tanpa manual</td>
+        <td>ON/OFF sesuai jadwal tanpa manual</td>
+        <td>Nyala siang hari / mati sebelum waktunya / perlu switch manual</td>
+        <td>
+          <select>
+            <option value=""></option>
+            <option value="Pass">Pass</option>
+            <option value="Fail">Fail</option>
+          </select>
+        </td>
+        <td><textarea></textarea></td>
+        <td><input type="text"></td>
+        <td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>SHOPFRONT</td>
+        <td>Billboard & Singlepole - Visibility
+        <br>- Ambil foto dari 30m dan 50m (siang & malam)
+        <br>- Pastikan tidak ada halangan</td>
+        <td>Logo/brand terbaca jelas dari 30–50m siang & malam</td>
+        <td>Logo/brand terbaca jelas dari 30–50m siang & malam</td>
+        <td>Logo/Brand tidak terlihat/terbaca Jelas</td>
+        <td>
+          <select>
+            <option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option>
+          </select>
+        </td>
+        <td><textarea></textarea></td>
+        <td><input type="text"></td>
+        <td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>SHOPFRONT</td>
+        <td>Ukuran - Ukuran billboard</td>
+        <td>Sesuai Drawing yang ditentukan<br>Panjang = …...<br>Lebar = …...</td>
+        <td>Ukuran sesuai design</td>
+        <td>Terlalu besar/kecil, tidak sesuai izin</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>4</td>
+        <td>SHOPFRONT</td>
+        <td>Ukuran singlepole</td>
+        <td>Sesuai Drawing yang ditentukan<br>Panjang = …...<br>Lebar = …...</td>
+        <td>Ukuran sesuai design</td>
+        <td>Terlalu besar/kecil, tidak sesuai izin</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>5</td>
+        <td>SHOPFRONT</td>
+        <td>Pengecatan Facade
+        <br>- Cat abu-abu & oranye
+        <br>- Visual check siang hari
+        <br>- Bandingkan dengan kode warna yang ditentukan, deviasi &lt;5%</td>
+        <td>Cat rata, rapi, tidak belang</td>
+        <td>Cat rata, rapi, tidak belang</td>
+        <td>Cat mengelupas, belang, warna salah</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>6</td>
+        <td>SHOPFRONT</td>
+        <td>Kanopi - Kekuatan Kanopi
+        <br>- Visual simetris
+        <br>- Tes siram air 5 menit</td>
+        <td>Kokoh, simetris, tidak bocor</td>
+        <td>Kokoh, simetris, tidak bocor</td>
+        <td>Retak, miring, bocor</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>7</td>
+        <td>SHOPFRONT</td>
+        <td>Cat dalam area kanopi - Visual check hasil pengecatan</td>
+        <td>Cat rata, sesuai warna standar</td>
+        <td>Cat rata, sesuai warna standar</td>
+        <td>Belang, cat kotor</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>8</td>
+        <td>SHOPFRONT</td>
+        <td>Lampu
+        <br>- Nyalakan lampu malam
+        <br>- Cek instalasi pakai pipa konduit</td>
+        <td>Lampu terang, instalasi tertata</td>
+        <td>Lampu terang, instalasi tertata</td>
+        <td>Lampu mati/redup, kabel berantakan</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>9</td>
+        <td>SHOPFRONT</td>
+        <td>Folding Gate - Operasi buka-tutup (Tes buka-tutup 3 kali)</td>
+        <td>Lancar tanpa seret</td>
+        <td>Lancar tanpa seret</td>
+        <td>Seret, macet, suara kasar</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>10</td>
+        <td>SHOPFRONT</td>
+        <td>Folding Gate - Cat (Visual check cat folding gate)</td>
+        <td>Cat rata, tidak belang</td>
+        <td>Cat rata, tidak belang</td>
+        <td>Cat belang, warna salah</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>11</td>
+        <td>SHOPFRONT</td>
+        <td>Box overpall
+        <br>- Cek ada 2 box
+        <br>- Tes tangan masuk untuk ambil gembok</td>
+        <td>Sesuai standar</td>
+        <td>Sesuai standar</td>
+        <td>Box rusak, sulit dijangkau</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>12</td>
+        <td>SHOPFRONT</td>
+        <td>Kunci - Tes buka-tutup kunci 3x</td>
+        <td>Kunci normal</td>
+        <td>Kunci normal</td>
+        <td>Macet, patah</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>13</td>
+        <td>SHOPFRONT</td>
+        <td>Pintu Kaca - Tes buka-tutup 3x tanpa seret</td>
+        <td>Buka-tutup smooth</td>
+        <td>Buka-tutup smooth</td>
+        <td>Seret, suara kasar</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>14</td>
+        <td>SHOPFRONT</td>
+        <td>Kaca bersih, bebas goresan dan karet sealing rapat</td>
+        <td>Bersih & presisi</td>
+        <td>Bersih & presisi</td>
+        <td>Kaca kotor/gores, sealing lepas</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>15</td>
+        <td>SHOPFRONT</td>
+        <td>Shopfront kaca kokoh & Presisi - Visual check instalasi</td>
+        <td>Presisi, lurus, tidak bergeser</td>
+        <td>Presisi, lurus, tidak bergeser</td>
+        <td>Miring, bergeser</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>16</td>
+        <td>SHOPFRONT</td>
+        <td>Kunci - Tes fungsi kunci 3x</td>
+        <td>Normal</td>
+        <td>Normal</td>
+        <td>Macet, rusak</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>17</td>
+        <td>SHOPFRONT</td>
+        <td>Door closer - Tes buka-tutup 5x, Menutup otomatis ≤ 3 detik, tanpa hentakan</td>
+        <td>Smooth closing</td>
+        <td>Smooth closing</td>
+        <td>Tidak nutup otomatis, banting</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>18</td>
+        <td>SALES AREA</td>
+        <td>Plafon - Rangka plafon</td>
+        <td>Rangka plafon kokoh , Rangka lurus, tidak miring, tidak goyang, dan tidak berkarat</td>
+        <td>Rangka Plafon Kokoh dan Presisi</td>
+        <td>Retak, miring, bocor</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>19</td>
+        <td>SALES AREA</td>
+        <td>Kebersihan Plafon - Tidak ada retak rambut, sambungan plafon rapi</td>
+        <td>Plafon bersih tanpa ada kotoran &lt;5%</td>
+        <td>Plafon bersih tanpa ada kotoran &lt;5%</td>
+        <td>Plafon tidak rapih dan tidak bersih</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>20</td>
+        <td>SALES AREA</td>
+        <td>Cat plafon - Drop plafon lurus, cat rata, dan tidak belang</td>
+        <td>Cat rata, tidak belang</td>
+        <td>Cat rata, tidak belang</td>
+        <td>Cat belang, warna salah</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>21</td>
+        <td>SALES AREA</td>
+        <td>Mechanical Electrical - Pemasangan lampu (Kabel dan instalasi listrik rapi, tidak ada kabel menggantung)</td>
+        <td>Kabel terpasang rapi, sesuai jalur tray/conduit</td>
+        <td>Kabel terpasang rapi, sesuai jalur tray/conduit</td>
+        <td>Kabel tidak rapi, menggantung, tidak masuk jalur tray/conduit</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>22</td>
+        <td>SALES AREA</td>
+        <td>Lampu terpasang sesuai layout, tidak longgar, dan berfungsi</td>
+        <td>Rapi, aman , komponen lengkap , berfungsi normal</td>
+        <td>Rapi, aman , komponen lengkap , berfungsi normal</td>
+        <td>kap tidak sesuai, kendor, tidak menyala / redup</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>23</td>
+        <td>SALES AREA</td>
+        <td>Stop Kontak - Pasang Stop Kontak dengan Rapih dan berfungsi dengan baik :
+        <br>- Stop Kontak Meja Kasir  1+5(1 jalur pusat ,4-5 jumper)
+        <br>- Stop Kontak Meja konsultasi
+        <br>- Stop Kontak Meja BP
+        <br>- Stop Kontak Dinding depan toko</td>
+        <td>stop kontak terpasang kokoh , tidak ada percikan saat di colokan,terpasang rapat dan aman serta jumlah sesuai</td>
+        <td>stop kontak terpasang kokoh , tidak ada percikan saat di colokan,terpasang rapat dan aman serta jumlah sesuai</td>
+        <td>stop kontak miring/longgar, tidak berfungsi, ada percikan saat dicolok,stop kontak kurang</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>24</td>
+        <td>SALES AREA</td>
+        <td>Pemasangan Saklar lampu - Saklar sesuai layout dan dapat menyalakan lampu sesuai grouping. Ketinggian minimal 120cm dari lantai</td>
+        <td>Saklar terpasang kokoh, berfungsi normal , tidak ada percikan/bau terbakar,posisi ketinggian sesuai</td>
+        <td>Saklar terpasang kokoh, berfungsi normal , tidak ada percikan/bau terbakar,posisi ketinggian sesuai</td>
+        <td>saklar longar/miring , fungsi switch terbalik, kabel koneksi longgar, tercium bau terbakar</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>25</td>
+        <td>SALES AREA</td>
+        <td>Panel listrik dan komponen MCB
+        <br>- Semua kabel terhubung ke panel untuk stop kontak, saklar lampu dan timer logo.
+        <br>- Panel terpasang kokoh, ada busbar, mcb type scheneider , timer logo.
+        <br>- Panel mcb tidak melebihi suhu  30-40 derajat
+        <br>- Terdapat stopfire (sikaboom) pada lubang panel</td>
+        <td>Panel Listrik dan Komponen MCB sesuai dengan poin-poin yang ditetapkan</td>
+        <td>Panel Listrik dan Komponen MCB sesuai dengan poin-poin yang ditetapkan</td>
+        <td>Panel Listrik dan Komponen MCB tidak sesuai dengan poin-poin yang ditetapkan</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>26</td>
+        <td>SALES AREA</td>
+        <td>Lampu Emergency - Lampu emergency berfungsi saat diuji coba dan terpasang di lokasi sesuai layout</td>
+        <td>lampu emergency menyala saat arus listrik mati</td>
+        <td>lampu emergency menyala saat arus listrik mati</td>
+        <td>lampu tidak menyala saat arus listrik mati, atau tetap menyala saat arus listrik menyala</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>27</td>
+        <td>SALES AREA</td>
+        <td>Lampu Spotlight - Lampu spotlight sesuai layout, menyala, dan instalasi rapi</td>
+        <td>terpasang rapi, menyala / berfungsi, amature dan housing kokoh</td>
+        <td>terpasang rapi, menyala / berfungsi, amature dan housing kokoh</td>
+        <td>tidak terpasang rapi, tidak menyala / tidak berfungsi, amature dan housing longgar</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>28</td>
+        <td>SALES AREA</td>
+        <td>Lampu downlight atas meja kasir - Downlight menyala, posisi simetris, dan pencahayaan cukup</td>
+        <td>terpasang rapi, menyala / berfungsi tidak redup atau kedip2, amature dan housing kokoh</td>
+        <td>terpasang rapi, menyala / berfungsi tidak redup atau kedip2, amature dan housing kokoh</td>
+        <td>tidak terpasang rapi, tidak menyala / tidak berfungsi, amature dan housing longgar</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>29</td>
+        <td>SALES AREA</td>
+        <td>Lampu RM 120 dan 60 - Lampu RM 120 & RM 60 sesuai jumlah kebutuhan, menyala, dan instalasi rapi</td>
+        <td>terpasang rapi, menyala / berfungsi tidak redup atau kedip2, amature dan housing kokoh</td>
+        <td>terpasang rapi, menyala / berfungsi tidak redup atau kedip2, amature dan housing kokoh</td>
+        <td>tidak terpasang rapi, tidak menyala / tidak berfungsi, amature dan housing longgar</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>30</td>
+        <td>Rak & Gondola</td>
+        <td>Rak Kabinet Belakang Kasir - Jumlah Rak Belakang Kasir = …..</td>
+        <td>Rak Sesuain dengan Jumlah yang ditentukan</td>
+        <td>Rak Sesuain dengan Jumlah yang ditentukan</td>
+        <td>Rak tidak sesuak</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>31</td>
+        <td>Rak & Gondola</td>
+        <td>Jumlah Shelving setiap rak = …..</td>
+        <td>Jumlah Shelving sesuai yang ditentukan</td>
+        <td>Jumlah Shelving sesuai yang ditentukan</td>
+        <td>Jumlah Shelving tidak sesuai Kurang/Lebih</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>32</td>
+        <td>Rak & Gondola</td>
+        <td>Rak Pakai Existing/New = …..</td>
+        <td>Jenis Rak Sesuai yang ditentukan</td>
+        <td>Jenis Rak Sesuai yang ditentukan</td>
+        <td>Jenis Rak Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>33</td>
+        <td>Rak & Gondola</td>
+        <td>Pakai Sliding Kaca atau Tidak = …..</td>
+        <td>SesuaI</td>
+        <td>SesuaI</td>
+        <td>Tidak SesuaI</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>34</td>
+        <td>Rak & Gondola</td>
+        <td>Sliding Kaca tidak Seret , tes 3x tutup-buka</td>
+        <td>Sliding Kaca normal di geser dengan baik</td>
+        <td>Sliding Kaca normal di geser dengan baik</td>
+        <td>Sliding Kaca seret / tidak normal</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>35</td>
+        <td>Rak & Gondola</td>
+        <td>Pemasangan Sunblust Ya/Tidak = …..</td>
+        <td>Sesuai</td>
+        <td>Sesuai</td>
+        <td>Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>36</td>
+        <td>Rak & Gondola</td>
+        <td>Ketebalan Sunblust sesuai ketentuan berlaku TC107SP tak i kossai</td>
+        <td>Ketebalan Sunblust sesuai ketentuan berlaku</td>
+        <td>Ketebalan Sunblust sesuai ketentuan berlaku</td>
+        <td>ketebalan sunblust tidak sesuai terlalu transparan/tebal sekali</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>37</td>
+        <td>Rak & Gondola</td>
+        <td>Pemasangan kabinet kuat dan presisi</td>
+        <td>Rangka Plafon Kokoh dan Presisi</td>
+        <td>Rangka Plafon Kokoh dan Presisi</td>
+        <td>Retak, miring, bocor</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>38</td>
+        <td>Rak Dinding</td>
+        <td>Rak Dinding Pakai Existing/New = …..</td>
+        <td>Jika Existing sudah di repair dengan baik namun Jika Rak Baru, rak dalam kondisi baru tanpa defact</td>
+        <td>Jika Existing sudah di repair dengan baik namun Jika Rak Baru, rak dalam kondisi baru tanpa defact</td>
+        <td>Tidak sesuai dengan ketentuan</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>39</td>
+        <td>SALES AREA</td>
+        <td>Rak & Gondola - Rak Dinding - Jumlah Unit Rak Dinding = …...</td>
+        <td>Jumlah rak sesuai</td>
+        <td>Jumlah rak sesuai</td>
+        <td>Jumlah Rak Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>40</td>
+        <td>SALES AREA</td>
+        <td>Jumlah Shelv setiap unit = </td>
+        <td>Jumlah Shelv sesuai</td>
+        <td>Jumlah Shelv sesuai</td>
+        <td>Jumlah Shelv Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>41</td>
+        <td>SALES AREA</td>
+        <td>Ukuran Rak Dinding setiap Unit - Panjang / Lebar</td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran tidak sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>42</td>
+        <td>SALES AREA</td>
+        <td>pemasangan rak dinding kokoh, tidak goyang</td>
+        <td>Rak dinding Kokoh dan Presisi</td>
+        <td>Rak dinding Kokoh dan Presisi</td>
+        <td>Miring dan Goyang</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>43</td>
+        <td>SALES AREA</td>
+        <td>Island Gondola - Toko Pakai Island Gondola = Ya / Tidak</td>
+        <td>SesuaI</td>
+        <td>SesuaI</td>
+        <td>Tidak SesuaI</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>44</td>
+        <td>SALES AREA</td>
+        <td>Jumlah Hook Rak Island Gondola = …. </td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah Sesuai</td>
+        <td>Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>45</td>
+        <td>SALES AREA</td>
+        <td>Jumlah End Gondola = …..</td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah Sesuai</td>
+        <td>Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>46</td>
+        <td>SALES AREA</td>
+        <td>Jumlah Island Gondola = …. </td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah Sesuai</td>
+        <td>Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>47</td>
+        <td>SALES AREA</td>
+        <td>Type Gondola = Ex Century / New Type Island Gondola</td>
+        <td>Type Island Gondola Sesuai</td>
+        <td>Type Island Gondola Sesuai</td>
+        <td>Type Island Gondola tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>48</td>
+        <td>SALES AREA</td>
+        <td>Fungsi Roda Island Gondola</td>
+        <td>Roda befungsi dengan baik tanpa seret</td>
+        <td>Roda befungsi dengan baik tanpa seret</td>
+        <td>Rodak tidak berfungsi dengan baik</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>49</td>
+        <td>Meja Kasir</td>
+        <td>Pemasangan Rise floor - Rise floor rata, tidak menimbulkan bunyi saat diinjak dan kokoh. Tes berdiri 5 orang</td>
+        <td>Rise floor kokoh tidak rusak dan tidak bunyi</td>
+        <td>Rise floor kokoh tidak rusak dan tidak bunyi</td>
+        <td>Rise floor rusak, retak dan berbunyi</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>50</td>
+        <td>Meja Kasir</td>
+        <td>Ukuran Rise Floor - Ukuran : Panjang = …. Lebar = …. </td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>51</td>
+        <td>Meja Kasir</td>
+        <td>Blue Box - Jumlah Blue Box = …..</td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah Sesuai</td>
+        <td>Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>52</td>
+        <td>Meja Konsultasi</td>
+        <td>Ketersediaan Meja Konsultasi = Ya/Tidak …. Ukuran Meja Konsultasi : Panjang = …. Lebar = …. Tinggi = ….</td>
+        <td>Ukuran Meja Konsultasi : Ukuran Sesuai</td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>53</td>
+        <td>Meja Kasir</td>
+        <td>Ukuran Meja Kasir - Panjang = ….. Lebar = ….. Tinggi = …..</td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>54</td>
+        <td>Meja Kasir</td>
+        <td>Lubang Meja Kasir untuk Komputer - Jumlah Lubang untuk Meja Kasir = …..</td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>55</td>
+        <td>Meja Kasir</td>
+        <td>Shelving Meja kasir - Jumlah Shelving depan Meja Kasir = …..</td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>56</td>
+        <td>Meja Kasir</td>
+        <td>Sliding Kaca Meja Kasir - Ada Sliding Kaca Meja Kasir = …...</td>
+        <td>Sesuai</td>
+        <td>Sesuai</td>
+        <td>Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>57</td>
+        <td>Meja Kasir</td>
+        <td>Pintu Koboy - Jumlah Pintu Koboy = …… - Engsel Pintu Koboy Berfungsi dengan baik</td>
+        <td>Jumlah Sesuai dan fungsi engsel berjalan dengan baik</td>
+        <td>Jumlah Sesuai dan fungsi engsel berjalan dengan baik</td>
+        <td>Jumlah tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>58</td>
+        <td>Meja Tensi</td>
+        <td>Ukuran Meja Tensi - Ukuran Meja Tensi : Panjang = . ... Lebar = ..... Tinggi = .....</td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran Sesuai</td>
+        <td>Ukuran tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>59</td>
+        <td>Meja Tensi</td>
+        <td>Jumlah Shelv Meja Tensi - Jumlah Shel setiap Meja Tensi = 4 unit</td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah Sesuai</td>
+        <td>Jumlah tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>60</td>
+        <td>Meja Tensi</td>
+        <td>Ukuran Shelv - Ukuran Shelv : Panjang = 74cm Lebar = 12,7 cm Tebal = 3cm</td>
+        <td>Ukuran Shelv Sesuai</td>
+        <td>Ukuran Shelv Sesuai</td>
+        <td>Ukuran Shelv tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>61</td>
+        <td>Meja Tensi</td>
+        <td>Jarak Antar Shelv - Jarak antar Shelv adalah 27,5cm</td>
+        <td>Jarak Sesuai</td>
+        <td>Jarak Sesuai</td>
+        <td>Jarak Tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>62</td>
+        <td>Meja Tensi</td>
+        <td>Tinggi Meja Tensi & Kursi Mea Tensi - Tinggi Meja Tensi = 69,2 cm - Tinggi Kursi = 50 cm</td>
+        <td>Tinggi Sesuai</td>
+        <td>Tinggi Sesuai</td>
+        <td>Tinggi tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>63</td>
+        <td>Dinding & Partisi</td>
+        <td>Pengecatan dinding - Dinding dicat rata, warna sesuai standar, dan tidak lembab, permukaan halus merata, tidak ada cat yang belang atau berbayang</td>
+        <td>permukaan halus merata, tidak ada cat yang belang atau berbayang</td>
+        <td>permukaan halus merata, tidak ada cat yang belang atau berbayang</td>
+        <td>permukan tidak rata, cat belang dan berbayang , jamur</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>64</td>
+        <td>Dinding & Partisi</td>
+        <td>Partisi gudang atau area atas wall unit dan cabinet - Partisi rapi, tidak retak, dan sambungan rata</td>
+        <td>permukaan rata ,sambungan partisi tidak terlihat atau retak, tidak ada celah antara rak dan partisi</td>
+        <td>permukaan rata ,sambungan partisi tidak terlihat atau retak, tidak ada celah antara rak dan partisi</td>
+        <td>permukaan tidak rata, sambungan partisi terlihat, ada retakan pada partisi, terdapat celah antar rak dan partisi</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>65</td>
+        <td>Dinding & Partisi</td>
+        <td>Partisi kokoh - Partisi stabil, tidak goyang, dan presisi</td>
+        <td>partisi terpasang kokoh, sesuai dengan rangka hollow, tidak goyang, lurus sejajar</td>
+        <td>partisi terpasang kokoh, sesuai dengan rangka hollow, tidak goyang, lurus sejajar</td>
+        <td>partisi goyang ,dimensi tidak sesuai, sambungan goyang, atau bergeser</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>66</td>
+        <td>Dinding & Partisi</td>
+        <td>Pemasangan rel curtain/tirai penutup akses tangga - Rel curtain terpasang lurus, tirai dapat dibuka-tutup dengan mudah</td>
+        <td>lurus ,kokoh ,bracket aksesoris lengkap, tidak goyang</td>
+        <td>lurus ,kokoh ,bracket aksesoris lengkap, tidak goyang</td>
+        <td>pemasangan tidak lurus, tidak kokoh , aksesoris tidak lengkap</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>67</td>
+        <td>AC</td>
+        <td>Jenis AC - Jenis AC = Cassete / Split</td>
+        <td>Jenis AC Sesuai</td>
+        <td>Jenis AC Sesuai</td>
+        <td>Jenis AC tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>68</td>
+        <td>AC</td>
+        <td>Temperatur - Cek kesesuaian temperatur AC - Cek Selama 15 menit</td>
+        <td>Temperatur Sesuai</td>
+        <td>Temperatur Sesuai</td>
+        <td>Temperatur tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>69</td>
+        <td>AC</td>
+        <td>Pemasangan AC - Indoor & Outdoor AC terpasang stabil & Kokoh</td>
+        <td>Pemasangan sesuai titik yang di tentukan dan kokoh</td>
+        <td>Pemasangan sesuai titik yang di tentukan dan kokoh</td>
+        <td>Pemasangan tidak sesuai titik yang di tentukan dan goyah atau tidak kokoh</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>
+        <td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>70</td>
+        <td>AC</td>
+        <td>Jalur Pipa AC - Jalur pipa AC sesuai dengan layout yang ditentukan</td>
+        <td>Jalur Pipa AC rapi dan sesuai ketentuan</td>
+        <td>Jalur Pipa AC rapi dan sesuai ketentuan</td>
+        <td>Jalur Pipa AC tidak sesuai ketentuan</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>71</td>
+        <td>AREA GUDANG</td>
+        <td>Rak Gudang - Rak Gudang untuk Ethical & Non Ethical - Jumlah Rak Gudang</td>
+        <td>Jumlah Rak Gudang Sesuai</td>
+        <td>Jumlah Rak Gudang Sesuai</td>
+        <td>Jumlah Rak Gudang tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>72</td>
+        <td>Instalasi Air</td>
+        <td>Wastafel
+        <br>- Lokasi Wastafel Sesuai layout yang ditentukan
+        <br>- Jenis Wastafel sesuai ketentuan
+        <br>- Fungsi Wastafel berjalan dengan baik</td>
+        <td>Wastafel berada di titk sesuai ketentuan dan berfungsi dengan baik</td>
+        <td>Wastafel berada di titk sesuai ketentuan dan berfungsi dengan baik</td>
+        <td>Wastafet tidak sesuai ketentuan dan tidak berfungsi dengan baik</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>73</td>
+        <td>Toilet</td>
+        <td>- Kondisi Keramik toilet bersih
+        <br>- Keran Air Berfungsi dengan baik
+        <br>- Flush pembersih closet berfungsi dengan baik
+        <br>- Jet Washer untuk closet berfungsi dengan baik
+        <br>- Tidak ada kebocoran dari semua komponen
+        <br>- Pembuangan air tidak mampet</td>
+        <td>Toilet berfungsi dengan baik dari semua komponen yang ditentukan</td>
+        <td>Toilet berfungsi dengan baik dari semua komponen yang ditentukan</td>
+        <td>Toilet ada kerusakan dan kebocoran dari semua komponen</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>74</td>
+        <td>Instalasi Air</td>
+        <td>Pipa Air - Uji tekanan air, pastikan lancar dan tanpa kebocoran</td>
+        <td>Pipa air tidak bocor dan aliran air lancar</td>
+        <td>Pipa air tidak bocor dan aliran air lancar</td>
+        <td>Pipa air bocor dan aliran air tidak lancar</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>75</td>
+        <td>Lemari Narkotika</td>
+        <td>Ukuran Lemari Narkotika - Ukuran Lemari : Panjang = .... Lebar = .... Tinggi = ..... </td>
+        <td>Ukuran Lemari Narkotika Sesuai</td>
+        <td>Ukuran Lemari Narkotika Sesuai</td>
+        <td>Ukuran Lemari Narkotika tidak Sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>76</td>
+        <td>Lemari Narkotika</td>
+        <td>Outer Lemari Narkotika - Outer Lemari ada 2 pintu</td>
+        <td>Jumlah Pintu Lemari Narkotika ada 2</td>
+        <td>Jumlah Pintu Lemari Narkotika ada 2</td>
+        <td>Jumlah Pintu Lemari Narkotika tidak sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>77</td>
+        <td>Lemari Narkotika</td>
+        <td>Second Layer Lemari Narkotika - ada 4 pintu dengan 4 kunci lemari narkotika</td>
+        <td>Jumlah pintu di second layer lemari narkotika sesuai</td>
+        <td>Jumlah pintu di second layer lemari narkotika sesuai</td>
+        <td>Jumlah pintu di second layer lemari narkotika tidak sesuai</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>78</td>
+        <td>Meja Racik</td>
+        <td>Penempatan Meja Racik - Meja Racik & Kursi di tempatkan pada lokasi yang ditentukan sesuai layout</td>
+        <td>Meja racik ditempatkan sesuai ketentuan</td>
+        <td>Meja racik ditempatkan sesuai ketentuan</td>
+        <td>Meja racik ditempatkan sesuai tidak ketentuan</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+      <tr>
+        <td>79</td>
+        <td>Meja Racik</td>
+        <td>Kondisi Meja Racik - Meja Racik Berfungsi dengan baik dan kokoh</td>
+        <td>Kondisi meja racik kokoh dan tidak rusak</td>
+        <td>Kondisi meja racik kokoh dan tidak rusak</td>
+        <td>Kondisi meja racik tidak kokoh dan rusak</td>
+        <td><select><option value=""></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td><td><textarea></textarea></td><td><input type="text"></td><td><textarea></textarea></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+
+  <p class="note">Disampaikan oleh (sitedev): Tanda Tangan & Nama Jelas — Diperiksa oleh (AM): Tanda Tangan & Nama Jelas</p>
+
+  <script>
+    // Export table to CSV including project meta
+    function escapeCsv(val) {
+      if (val === null || val === undefined) return "";
+      val = String(val);
+      if (val.indexOf('"') !== -1) val = val.replace(/"/g, '""');
+      if (val.search(/("|,|\n)/g) !== -1) val = '"' + val + '"';
+      return val;
+    }
+
+    function exportChecklist() {
+      const project = document.getElementById('project').value || '';
+      const location = document.getElementById('location').value || '';
+      const date = document.getElementById('date').value || '';
+      const am = document.getElementById('am').value || '';
+
+      const rows = [];
+      rows.push(['Project', project, '', '', '', '', '', '','', ''].map(escapeCsv).join(','));
+      rows.push(['Location', location, '', '', '', '', '', '','', ''].map(escapeCsv).join(','));
+      rows.push(['Date', date, '', '', '', '', '', '','', ''].map(escapeCsv).join(','));
+      rows.push(['AM', am, '', '', '', '', '', '','', ''].map(escapeCsv).join(','));
+      rows.push([]); // empty row
+      // header
+      const headerCols = ['No','Area','Pekerjaan / Item Pengecekan','Standart penilaian','Pass Criteria','Fail Criteria','Hasil (Pass/Fail)','Keterangan','PIC','Action Plan'];
+      rows.push(headerCols.map(escapeCsv).join(','));
+
+      // iterate tbody
+      const tbody = document.querySelector('#checklistTable tbody');
+      const trs = tbody.querySelectorAll('tr');
+      trs.forEach(tr => {
+        const tds = tr.children;
+        // tds: fixed layout: 0..9
+        const no = tds[0]?.innerText.trim() || '';
+        const area = tds[1]?.innerText.trim() || '';
+        const item = tds[2]?.innerText.trim().replace(/\n\s*/g, ' | ') || '';
+        const standart = tds[3]?.innerText.trim().replace(/\n\s*/g, ' | ') || '';
+        const passcrit = tds[4]?.innerText.trim().replace(/\n\s*/g, ' | ') || '';
+        const failcrit = tds[5]?.innerText.trim().replace(/\n\s*/g, ' | ') || '';
+
+        // hasil: select element
+        let hasilVal = '';
+        const hasilSelect = tds[6].querySelector('select');
+        if (hasilSelect) hasilVal = hasilSelect.value;
+
+        // keterangan textarea
+        let ket = '';
+        const ketArea = tds[7].querySelector('textarea') || tds[7].querySelector('input');
+        if (ketArea) ket = ketArea.value;
+
+        // PIC
+        let pic = '';
+        const picInput = tds[8].querySelector('input') || tds[8].querySelector('textarea');
+        if (picInput) pic = picInput.value;
+
+        // action plan
+        let ap = '';
+        const apArea = tds[9].querySelector('textarea') || tds[9].querySelector('input');
+        if (apArea) ap = apArea.value;
+
+        const row = [no, area, item, standart, passcrit, failcrit, hasilVal, ket, pic, ap];
+        rows.push(row.map(escapeCsv).join(','));
+      });
+
+      const csvContent = rows.join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Checklist_SiteDev_Full.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function clearInputs() {
+      // reset all selects, inputs, textareas for hasil/keterangan/pic/action
+      const tbody = document.querySelector('#checklistTable tbody');
+      tbody.querySelectorAll('tr').forEach(tr => {
+        const select = tr.querySelector('select');
+        if (select) select.value = '';
+        tr.querySelectorAll('input').forEach(i => { i.value = ''; });
+        tr.querySelectorAll('textarea').forEach(t => { t.value = ''; });
+      });
+      // clear meta
+      document.getElementById('project').value = '';
+      document.getElementById('location').value = '';
+      document.getElementById('date').value = '';
+      document.getElementById('am').value = '';
+    }
+
+    // Process and save PDF using jsPDF + autoTable
+    async function processPDF() {
+      if (!confirm("Apakah data sudah benar dan ingin disimpan ke PDF?")) return;
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF("l", "pt", "a4");
+
+      // Ambil meta data
+      const project = document.getElementById('project').value || '';
+      const location = document.getElementById('location').value || '';
+      const date = document.getElementById('date').value || '';
+      const am = document.getElementById('am').value || '';
+
+      doc.setFontSize(14);
+      doc.text("FORM CHECKLIST PEKERJAAN SITEDEV", 40, 40);
+      doc.setFontSize(10);
+      doc.text(`Project: ${project}`, 40, 60);
+      doc.text(`Lokasi: ${location}`, 300, 60);
+      doc.text(`Tanggal: ${date}`, 560, 60);
+      doc.text(`Nama AM: ${am}`, 40, 78);
+
+      // Prepare table data: build head and rows
+      const head = [['No','Area','Pekerjaan / Item Pengecekan','Standart penilaian','Pass Criteria','Fail Criteria','Hasil','Keterangan','PIC','Action Plan']];
+      const body = [];
+      const tbody = document.querySelector('#checklistTable tbody');
+      const trs = tbody.querySelectorAll('tr');
+      trs.forEach(tr => {
+        const tds = tr.children;
+        const no = tds[0]?.innerText.trim() || '';
+        const area = tds[1]?.innerText.trim() || '';
+        const item = (tds[2]?.innerText || '').trim().replace(/\n\s*/g, ' | ');
+        const standart = (tds[3]?.innerText || '').trim().replace(/\n\s*/g, ' | ');
+        const passcrit = (tds[4]?.innerText || '').trim().replace(/\n\s*/g, ' | ');
+        const failcrit = (tds[5]?.innerText || '').trim().replace(/\n\s*/g, ' | ');
+
+        let hasilVal = '';
+        const hasilSelect = tds[6].querySelector('select');
+        if (hasilSelect) hasilVal = hasilSelect.value;
+
+        let ket = '';
+        const ketArea = tds[7].querySelector('textarea') || tds[7].querySelector('input');
+        if (ketArea) ket = ketArea.value;
+
+        let pic = '';
+        const picInput = tds[8].querySelector('input') || tds[8].querySelector('textarea');
+        if (picInput) pic = picInput.value;
+
+        let ap = '';
+        const apArea = tds[9].querySelector('textarea') || tds[9].querySelector('input');
+        if (apArea) ap = apArea.value;
+
+        body.push([no, area, item, standart, passcrit, failcrit, hasilVal, ket, pic, ap]);
+      });
+
+      // Use autoTable
+      doc.autoTable({
+        head: head,
+        body: body,
+        startY: 100,
+        styles: { fontSize: 8, cellWidth: 'wrap' },
+        headStyles: { fillColor: [47, 133, 90], textColor: 255 },
+        columnStyles: {
+          0: { cellWidth: 20 },  // No
+          1: { cellWidth: 60 },  // Area
+          2: { cellWidth: 160 }, // Item
+          3: { cellWidth: 120 }, // Standar
+          4: { cellWidth: 80 },  // Pass
+          5: { cellWidth: 80 },  // Fail
+          6: { cellWidth: 50 },  // Hasil
+          7: { cellWidth: 120 }, // Ket
+          8: { cellWidth: 60 },  // PIC
+          9: { cellWidth: 120 }  // Action Plan
+        },
+        didDrawPage: function (data) {
+          // header already added
+        },
+        margin: { top: 100 }
+      });
+
+      // Save PDF
+      doc.save('Checklist_SiteDev.pdf');
+    }
+  </script>
+</body>
+</html>
